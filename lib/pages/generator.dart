@@ -31,13 +31,6 @@ class _GeneratorPageState extends State<GeneratorPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Padding(
-            //gives the text more space
-            padding: EdgeInsets.all(8.0),
-            child: Text('Scouter name:'),
-          ),
-          //add place to input your name here
-          const SizedBox(height: 8), //creates a gap before the next item
-          const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text('Team number:'),
           ),
