@@ -48,7 +48,7 @@ class _EndgamePageState extends State<EndgamePage> {
               value: EndgamePosition.docked,
               selection: appState.endgamePosition),
           ToggleChip(
-              text: "Docked and engaged",
+              text: "Engaged",
               onPressed: updateEndgamePosition,
               value: EndgamePosition.engaged,
               selection: appState.endgamePosition),
