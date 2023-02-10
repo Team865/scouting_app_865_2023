@@ -1,19 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../widgets/toggle_chip.dart';
+import '../widgets/team_number.dart';
 
 class GeneratorPage extends StatefulWidget {
   const GeneratorPage({super.key});
 
   @override
-  State<GeneratorPage> createState() => _GeneratorPageState();
+  State<GeneratorPage> createState() => GeneratorPageState();
 }
 
 enum Position { none, red1, red2, red3, blue1, blue2, blue3 }
 
-class _GeneratorPageState extends State<GeneratorPage> {
+class GeneratorPageState extends State<GeneratorPage> {
+  final _commentController = TextEditingController();
+  static final teamController = TextEditingController();
+
+  Future _getData() async {
+    final preferences = await SharedPreferences.getInstance();
+    setState(() {
+      _commentController.text = preferences.getString('Comments') ?? '';
+      teamController.text = preferences.getString('Team number') ?? '';
+    });
+  }
+
+  Future _saveData() async {
+    final preferences = await SharedPreferences.getInstance();
+    preferences.setString('Comments', _commentController.text);
+    preferences.setString('Team number', teamController.text);
+  }
+
+  @override
+  void initState() {
+    _getData();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _saveData();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     //allows the home page widget to use variables from the app state
@@ -33,15 +64,18 @@ class _GeneratorPageState extends State<GeneratorPage> {
           const Padding(
             //gives the text more space
             padding: EdgeInsets.all(8.0),
-            child: Text('Scouter name:'),
+            child: Text('Comments:'),
           ),
-          //add place to input your name here
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: 300,
+                child: TextFormField(
+                  controller: _commentController,
+                ),
+              )), //allows the user to type input
           const SizedBox(height: 8), //creates a gap before the next item
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Team number:'),
-          ),
-          //add place to input the team's number here
+          const TeamNumber(),
           const SizedBox(height: 8),
           const Padding(
             padding: EdgeInsets.all(8.0),
@@ -95,6 +129,13 @@ class _GeneratorPageState extends State<GeneratorPage> {
               ),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ElevatedButton(
+                onPressed: () {},
+                child: const Text(
+                    "Save")), //adds a button to save the data, currently not functional
+          )
         ],
       ),
     );
