@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
+
 import 'package:scouting_app_865_2023/pages/generator.dart';
+import 'package:scouting_app_865_2023/pages/endgame.dart';
 
 void main() {
   runApp(const MyApp()); //runs the app
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   Position position = Position.none;
+  EndgamePosition endgamePosition = EndgamePosition.none;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -59,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const Placeholder();
         break;
       case 3:
-        page = const Placeholder();
+        page = const EndgamePage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex'); //error case

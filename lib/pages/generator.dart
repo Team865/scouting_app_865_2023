@@ -76,6 +76,9 @@ class GeneratorPageState extends State<GeneratorPage> {
               )), //allows the user to type input
           const SizedBox(height: 8), //creates a gap before the next item
           const TeamNumber(),
+            padding: EdgeInsets.all(8.0),
+            child: Text('Team number:'),
+          ),
           const SizedBox(height: 8),
           const Padding(
             padding: EdgeInsets.all(8.0),
