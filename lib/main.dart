@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
 
-import 'package:scouting_app_865_2023/pages/generator.dart';
-import 'package:scouting_app_865_2023/pages/endgame.dart';
+import '../pages/generator.dart';
+import '../pages/auto.dart';
+import '../pages/endgame.dart';
 
 void main() {
   runApp(const MyApp()); //runs the app
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   Position position = Position.none;
   EndgamePosition endgamePosition = EndgamePosition.none;
+  AutoPosition autoPosition = AutoPosition.none;
+  AutoMobility autoMobility = AutoMobility.no;
+  int autoCones = 0;
+  int autoCubes = 0;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -56,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const GeneratorPage();
         break;
       case 1:
-        page = const Placeholder();
+        page = const AutoPage();
         break;
       case 2:
         page = const Placeholder();

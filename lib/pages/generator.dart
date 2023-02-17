@@ -57,10 +57,10 @@ class GeneratorPageState extends State<GeneratorPage> {
     }
 
     return Center(
-      child: Column(
-        //centres the column in the GeneratorPage widget
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        child: Column(
+            //centres the column in the GeneratorPage widget
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
           const Padding(
             //gives the text more space
             padding: EdgeInsets.all(8.0),
@@ -76,6 +76,7 @@ class GeneratorPageState extends State<GeneratorPage> {
               )), //allows the user to type input
           const SizedBox(height: 8), //creates a gap before the next item
           const TeamNumber(),
+          const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text('Team number:'),
           ),
@@ -139,8 +140,6 @@ class GeneratorPageState extends State<GeneratorPage> {
                 child: const Text(
                     "Save")), //adds a button to save the data, currently not functional
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
