@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import '../widgets/toggle_chip.dart';
-import '../widgets/team_number.dart';
 
 class GeneratorPage extends StatefulWidget {
   const GeneratorPage({super.key});
@@ -17,20 +16,20 @@ enum Position { none, red1, red2, red3, blue1, blue2, blue3 }
 
 class GeneratorPageState extends State<GeneratorPage> {
   final _commentController = TextEditingController();
-  static final teamController = TextEditingController();
+  final _teamController = TextEditingController();
 
   Future _getData() async {
     final preferences = await SharedPreferences.getInstance();
     setState(() {
       _commentController.text = preferences.getString('Comments') ?? '';
-      teamController.text = preferences.getString('Team number') ?? '';
+      _teamController.text = preferences.getString('Team number') ?? '';
     });
   }
 
   Future _saveData() async {
     final preferences = await SharedPreferences.getInstance();
     preferences.setString('Comments', _commentController.text);
-    preferences.setString('Team number', teamController.text);
+    preferences.setString('Team number', _teamController.text);
   }
 
   @override
@@ -74,12 +73,19 @@ class GeneratorPageState extends State<GeneratorPage> {
                   controller: _commentController,
                 ),
               )), //allows the user to type input
-          const SizedBox(height: 8), //creates a gap before the next item
-          const TeamNumber(),
+          const SizedBox(height: 8),
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text('Team number:'),
           ),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: 300,
+                child: TextFormField(
+                  controller: _teamController,
+                ),
+              )),
           const SizedBox(height: 8),
           const Padding(
             padding: EdgeInsets.all(8.0),
