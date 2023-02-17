@@ -5,6 +5,8 @@ class ToggleChip extends StatelessWidget {
   final String text;
   final Enum selection;
   final Enum value;
+  final IconData icon1;
+  final IconData icon2;
 
   const ToggleChip({
     super.key,
@@ -12,6 +14,8 @@ class ToggleChip extends StatelessWidget {
     required this.text,
     required this.selection,
     required this.value,
+    required this.icon1,
+    required this.icon2,
   });
 
   @override
@@ -21,7 +25,7 @@ class ToggleChip extends StatelessWidget {
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(),
         onPressed: () => onPressed(value),
-        icon: Icon(selection == value ? Icons.circle : Icons.circle_outlined),
+        icon: Icon(selection == value ? icon1 : icon2),
         label: Text(text),
       ),
     );
