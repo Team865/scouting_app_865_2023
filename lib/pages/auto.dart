@@ -82,7 +82,11 @@ class _AutoPageState extends State<AutoPage> {
 
     void updateAutoMobility(AutoMobility value) {
       setState(() {
-        appState.autoMobility = value;
+        if (appState.autoMobility == value) {
+          appState.autoMobility = AutoMobility.no;
+        } else {
+          appState.autoMobility = value;
+        }
       });
     }
 
@@ -359,19 +363,11 @@ class _AutoPageState extends State<AutoPage> {
     return Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
             Widget>[
-      const Text("Robot auto mobility:"),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-        ToggleChip(
-            text: "No",
-            onPressed: updateAutoMobility,
-            value: AutoMobility.no,
-            selection: appState.autoMobility),
-        ToggleChip(
-            text: "Yes",
-            onPressed: updateAutoMobility,
-            value: AutoMobility.yes,
-            selection: appState.autoMobility),
-      ]),
+      ToggleChip(
+          text: "Mobility",
+          onPressed: updateAutoMobility,
+          value: AutoMobility.yes,
+          selection: appState.autoMobility),
       const SizedBox(height: 8),
       const Text("Chargepad:"),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[

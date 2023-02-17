@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../pages/generator.dart';
 import '../pages/auto.dart';
+import '../pages/teleop.dart';
 import '../pages/endgame.dart';
 
 void main() {
@@ -62,6 +63,37 @@ class MyAppState extends ChangeNotifier {
   AutoLow8 autoLow8 = AutoLow8.none;
   AutoLow9 autoLow9 = AutoLow9.none;
   AutoMobility autoMobility = AutoMobility.no;
+  TeleopHigh1 teleopHigh1 = TeleopHigh1.none;
+  TeleopHigh2 teleopHigh2 = TeleopHigh2.none;
+  TeleopHigh3 teleopHigh3 = TeleopHigh3.none;
+  TeleopHigh4 teleopHigh4 = TeleopHigh4.none;
+  TeleopHigh5 teleopHigh5 = TeleopHigh5.none;
+  TeleopHigh6 teleopHigh6 = TeleopHigh6.none;
+  TeleopHigh7 teleopHigh7 = TeleopHigh7.none;
+  TeleopHigh8 teleopHigh8 = TeleopHigh8.none;
+  TeleopHigh9 teleopHigh9 = TeleopHigh9.none;
+  TeleopMid1 teleopMid1 = TeleopMid1.none;
+  TeleopMid2 teleopMid2 = TeleopMid2.none;
+  TeleopMid3 teleopMid3 = TeleopMid3.none;
+  TeleopMid4 teleopMid4 = TeleopMid4.none;
+  TeleopMid5 teleopMid5 = TeleopMid5.none;
+  TeleopMid6 teleopMid6 = TeleopMid6.none;
+  TeleopMid7 teleopMid7 = TeleopMid7.none;
+  TeleopMid8 teleopMid8 = TeleopMid8.none;
+  TeleopMid9 teleopMid9 = TeleopMid9.none;
+  TeleopLow1 teleopLow1 = TeleopLow1.none;
+  TeleopLow2 teleopLow2 = TeleopLow2.none;
+  TeleopLow3 teleopLow3 = TeleopLow3.none;
+  TeleopLow4 teleopLow4 = TeleopLow4.none;
+  TeleopLow5 teleopLow5 = TeleopLow5.none;
+  TeleopLow6 teleopLow6 = TeleopLow6.none;
+  TeleopLow7 teleopLow7 = TeleopLow7.none;
+  TeleopLow8 teleopLow8 = TeleopLow8.none;
+  TeleopLow9 teleopLow9 = TeleopLow9.none;
+  Defence defence = Defence.no;
+  GroundIntake groundIntake = GroundIntake.no;
+  SingleSubstationIntake singleSubstationIntake = SingleSubstationIntake.no;
+  DoubleSubstationIntake doubleSubstationIntake = DoubleSubstationIntake.no;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -89,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const AutoPage();
         break;
       case 2:
-        page = const Placeholder();
+        page = const TeleopPage();
         break;
       case 3:
         page = const EndgamePage();
