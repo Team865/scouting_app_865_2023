@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
 
-import 'package:scouting_app_865_2023/pages/generator.dart';
-import 'package:scouting_app_865_2023/pages/endgame.dart';
+import '../pages/generator.dart';
+import '../pages/auto.dart';
+import '../pages/endgame.dart';
 
 void main() {
   runApp(const MyApp()); //runs the app
@@ -32,6 +33,35 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   Position position = Position.none;
   EndgamePosition endgamePosition = EndgamePosition.none;
+  AutoPosition autoPosition = AutoPosition.none;
+  AutoHigh1 autoHigh1 = AutoHigh1.none;
+  AutoHigh2 autoHigh2 = AutoHigh2.none;
+  AutoHigh3 autoHigh3 = AutoHigh3.none;
+  AutoHigh4 autoHigh4 = AutoHigh4.none;
+  AutoHigh5 autoHigh5 = AutoHigh5.none;
+  AutoHigh6 autoHigh6 = AutoHigh6.none;
+  AutoHigh7 autoHigh7 = AutoHigh7.none;
+  AutoHigh8 autoHigh8 = AutoHigh8.none;
+  AutoHigh9 autoHigh9 = AutoHigh9.none;
+  AutoMid1 autoMid1 = AutoMid1.none;
+  AutoMid2 autoMid2 = AutoMid2.none;
+  AutoMid3 autoMid3 = AutoMid3.none;
+  AutoMid4 autoMid4 = AutoMid4.none;
+  AutoMid5 autoMid5 = AutoMid5.none;
+  AutoMid6 autoMid6 = AutoMid6.none;
+  AutoMid7 autoMid7 = AutoMid7.none;
+  AutoMid8 autoMid8 = AutoMid8.none;
+  AutoMid9 autoMid9 = AutoMid9.none;
+  AutoLow1 autoLow1 = AutoLow1.none;
+  AutoLow2 autoLow2 = AutoLow2.none;
+  AutoLow3 autoLow3 = AutoLow3.none;
+  AutoLow4 autoLow4 = AutoLow4.none;
+  AutoLow5 autoLow5 = AutoLow5.none;
+  AutoLow6 autoLow6 = AutoLow6.none;
+  AutoLow7 autoLow7 = AutoLow7.none;
+  AutoLow8 autoLow8 = AutoLow8.none;
+  AutoLow9 autoLow9 = AutoLow9.none;
+  AutoMobility autoMobility = AutoMobility.no;
 }
 
 class MyHomePage extends StatefulWidget {
@@ -56,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const GeneratorPage();
         break;
       case 1:
-        page = const Placeholder();
+        page = const AutoPage();
         break;
       case 2:
         page = const Placeholder();

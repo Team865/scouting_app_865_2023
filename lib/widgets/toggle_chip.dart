@@ -19,6 +19,7 @@ class ToggleChip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(),
         onPressed: () => onPressed(value),
         icon: Icon(selection == value ? Icons.circle : Icons.circle_outlined),
         label: Text(text),
