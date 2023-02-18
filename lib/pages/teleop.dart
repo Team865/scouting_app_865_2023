@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../widgets/toggle_chip.dart';
+import '../widgets/scoring_legend.dart';
 
 class TeleopPage extends StatefulWidget {
   const TeleopPage({super.key});
@@ -424,6 +425,7 @@ class _TeleopPageState extends State<TeleopPage> {
                   icon2: Icons.circle_outlined),
             ]),
             const SizedBox(height: 8),
+            const ScoringLegend(),
             const Text("Teleop Pieces Scored:"),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               Column(

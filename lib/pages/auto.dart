@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../widgets/toggle_chip.dart';
+import '../widgets/scoring_legend.dart';
 
 class AutoPage extends StatefulWidget {
   const AutoPage({super.key});
@@ -396,6 +397,7 @@ class _AutoPageState extends State<AutoPage> {
             icon2: Icons.circle_outlined),
       ]),
       const SizedBox(height: 8),
+      const ScoringLegend(),
       const Text("Auto Pieces Scored:"),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
         Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
