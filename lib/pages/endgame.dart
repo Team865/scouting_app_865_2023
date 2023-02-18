@@ -36,22 +36,30 @@ class _EndgamePageState extends State<EndgamePage> {
               text: "None",
               onPressed: updateEndgamePosition,
               value: EndgamePosition.none,
-              selection: appState.endgamePosition),
+              selection: appState.endgamePosition,
+              icon1: Icons.circle,
+              icon2: Icons.circle_outlined),
           ToggleChip(
               text: "Parked",
               onPressed: updateEndgamePosition,
               value: EndgamePosition.parked,
-              selection: appState.endgamePosition),
+              selection: appState.endgamePosition,
+              icon1: Icons.circle,
+              icon2: Icons.circle_outlined),
           ToggleChip(
               text: "Docked",
               onPressed: updateEndgamePosition,
               value: EndgamePosition.docked,
-              selection: appState.endgamePosition),
+              selection: appState.endgamePosition,
+              icon1: Icons.circle,
+              icon2: Icons.circle_outlined),
           ToggleChip(
               text: "Engaged",
               onPressed: updateEndgamePosition,
               value: EndgamePosition.engaged,
-              selection: appState.endgamePosition),
+              selection: appState.endgamePosition,
+              icon1: Icons.circle,
+              icon2: Icons.circle_outlined),
         ]));
   }
 }
