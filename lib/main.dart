@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
 
-import '../pages/generator.dart';
-import '../pages/auto.dart';
-import '../pages/teleop.dart';
 import '../pages/endgame.dart';
+import '../pages/generator.dart';
+import '../pages/teleop.dart';
+import '../pages/auto.dart';
 
 void main() {
   runApp(const MyApp()); //runs the app
@@ -31,69 +31,61 @@ class MyApp extends StatelessWidget {
   }
 }
 
+enum Piece { none, cone, cube }
+
+// parked only used for endgame's position
+enum Position { none, docked, parked, engaged }
+
+enum StartingPosition { none, red1, red2, red3, blue1, blue2, blue3 }
+
 class MyAppState extends ChangeNotifier {
-  Position position = Position.none;
-  EndgamePosition endgamePosition = EndgamePosition.none;
-  AutoPosition autoPosition = AutoPosition.none;
-  AutoHigh1 autoHigh1 = AutoHigh1.none;
-  AutoHigh2 autoHigh2 = AutoHigh2.none;
-  AutoHigh3 autoHigh3 = AutoHigh3.none;
-  AutoHigh4 autoHigh4 = AutoHigh4.none;
-  AutoHigh5 autoHigh5 = AutoHigh5.none;
-  AutoHigh6 autoHigh6 = AutoHigh6.none;
-  AutoHigh7 autoHigh7 = AutoHigh7.none;
-  AutoHigh8 autoHigh8 = AutoHigh8.none;
-  AutoHigh9 autoHigh9 = AutoHigh9.none;
-  AutoMid1 autoMid1 = AutoMid1.none;
-  AutoMid2 autoMid2 = AutoMid2.none;
-  AutoMid3 autoMid3 = AutoMid3.none;
-  AutoMid4 autoMid4 = AutoMid4.none;
-  AutoMid5 autoMid5 = AutoMid5.none;
-  AutoMid6 autoMid6 = AutoMid6.none;
-  AutoMid7 autoMid7 = AutoMid7.none;
-  AutoMid8 autoMid8 = AutoMid8.none;
-  AutoMid9 autoMid9 = AutoMid9.none;
-  AutoLow1 autoLow1 = AutoLow1.none;
-  AutoLow2 autoLow2 = AutoLow2.none;
-  AutoLow3 autoLow3 = AutoLow3.none;
-  AutoLow4 autoLow4 = AutoLow4.none;
-  AutoLow5 autoLow5 = AutoLow5.none;
-  AutoLow6 autoLow6 = AutoLow6.none;
-  AutoLow7 autoLow7 = AutoLow7.none;
-  AutoLow8 autoLow8 = AutoLow8.none;
-  AutoLow9 autoLow9 = AutoLow9.none;
-  AutoMobility autoMobility = AutoMobility.no;
-  TeleopHigh1 teleopHigh1 = TeleopHigh1.none;
-  TeleopHigh2 teleopHigh2 = TeleopHigh2.none;
-  TeleopHigh3 teleopHigh3 = TeleopHigh3.none;
-  TeleopHigh4 teleopHigh4 = TeleopHigh4.none;
-  TeleopHigh5 teleopHigh5 = TeleopHigh5.none;
-  TeleopHigh6 teleopHigh6 = TeleopHigh6.none;
-  TeleopHigh7 teleopHigh7 = TeleopHigh7.none;
-  TeleopHigh8 teleopHigh8 = TeleopHigh8.none;
-  TeleopHigh9 teleopHigh9 = TeleopHigh9.none;
-  TeleopMid1 teleopMid1 = TeleopMid1.none;
-  TeleopMid2 teleopMid2 = TeleopMid2.none;
-  TeleopMid3 teleopMid3 = TeleopMid3.none;
-  TeleopMid4 teleopMid4 = TeleopMid4.none;
-  TeleopMid5 teleopMid5 = TeleopMid5.none;
-  TeleopMid6 teleopMid6 = TeleopMid6.none;
-  TeleopMid7 teleopMid7 = TeleopMid7.none;
-  TeleopMid8 teleopMid8 = TeleopMid8.none;
-  TeleopMid9 teleopMid9 = TeleopMid9.none;
-  TeleopLow1 teleopLow1 = TeleopLow1.none;
-  TeleopLow2 teleopLow2 = TeleopLow2.none;
-  TeleopLow3 teleopLow3 = TeleopLow3.none;
-  TeleopLow4 teleopLow4 = TeleopLow4.none;
-  TeleopLow5 teleopLow5 = TeleopLow5.none;
-  TeleopLow6 teleopLow6 = TeleopLow6.none;
-  TeleopLow7 teleopLow7 = TeleopLow7.none;
-  TeleopLow8 teleopLow8 = TeleopLow8.none;
-  TeleopLow9 teleopLow9 = TeleopLow9.none;
-  Defence defence = Defence.no;
-  GroundIntake groundIntake = GroundIntake.no;
-  SingleSubstationIntake singleSubstationIntake = SingleSubstationIntake.no;
-  DoubleSubstationIntake doubleSubstationIntake = DoubleSubstationIntake.no;
+  // Generator Page Data
+  final commentController = TextEditingController();
+  final teamController = TextEditingController();
+  StartingPosition startingPosition = StartingPosition.none;
+
+  // Auto Page Data
+  bool autoMobility = false;
+  Position autoPosition = Position.none;
+  List<bool> autoHigh = List.filled(10, false);
+  List<bool> autoMid = List.filled(10, false);
+  List<Piece> autoLow = List.filled(10, Piece.none);
+
+  // Teleop Page Data
+  bool defense = false;
+  bool groundIntake = false;
+  bool singleSubstationIntake = false;
+  bool doubleSubstationIntake = false;
+  List<bool> teleopHigh = List.filled(10, false);
+  List<bool> teleopMid = List.filled(10, false);
+  List<Piece> teleopLow = List.filled(10, Piece.none);
+
+  // Endgame Page Data
+  Position endgamePosition = Position.none;
+
+  // Resets All Data
+  // The function is here to easily check that it includes all the variables
+  void reset() {
+    commentController.clear();
+    teamController.clear();
+    startingPosition = StartingPosition.none;
+
+    autoMobility = false;
+    autoPosition = Position.none;
+    autoHigh = List.filled(10, false);
+    autoMid = List.filled(10, false);
+    autoLow = List.filled(10, Piece.none);
+
+    defense = false;
+    groundIntake = false;
+    singleSubstationIntake = false;
+    doubleSubstationIntake = false;
+    teleopHigh = List.filled(10, false);
+    teleopMid = List.filled(10, false);
+    teleopLow = List.filled(10, Piece.none);
+
+    endgamePosition = Position.none;
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -111,9 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Widget page;
 
+    // assigns the relevant page for the selected index
     switch (selectedIndex) {
-      //allows the page to change
-      //placeholders should be replaced with the widgets for the appropriate pages
       case 0:
         page = const GeneratorPage();
         break;
@@ -152,11 +143,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Text('Endgame')),
                   ],
                   selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                  },
+                  onDestinationSelected: (value) =>
+                      setState(() => selectedIndex = value),
                 ),
               ),
               Expanded(
