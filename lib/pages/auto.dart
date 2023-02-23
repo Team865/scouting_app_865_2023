@@ -26,7 +26,7 @@ class _AutoPageState extends State<AutoPage> {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        CircleToggleChip(
+        ToggleChip(
           text: "Mobility",
           onPressed: (value) => setState(() => appState.autoMobility = value),
           isSelected: appState.autoMobility,
@@ -36,19 +36,19 @@ class _AutoPageState extends State<AutoPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CircleEnumChip(
+            EnumChip(
               text: "None",
               onPressed: updatePosition,
               value: Position.none,
               selection: appState.autoPosition,
             ),
-            CircleEnumChip(
+            EnumChip(
               text: "Docked",
               onPressed: updatePosition,
               value: Position.docked,
               selection: appState.autoPosition,
             ),
-            CircleEnumChip(
+            EnumChip(
               text: "Engaged",
               onPressed: updatePosition,
               value: Position.engaged,
@@ -76,35 +76,31 @@ class _AutoPageState extends State<AutoPage> {
 
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: i % 3 != 1
-                  ? [
-                      ConeToggleChip(
+              // ToggleChip type depends on column number
+              children: [
+                i % 3 != 1
+                    ? ConeChip(
+                        onPressed: updateHigh,
+                        isSelected: appState.autoHigh[i],
+                      )
+                    : CubeChip(
                         onPressed: updateHigh,
                         isSelected: appState.autoHigh[i],
                       ),
-                      ConeToggleChip(
+                i % 3 != 1
+                    ? ConeChip(
+                        onPressed: updateMid,
+                        isSelected: appState.autoMid[i],
+                      )
+                    : CubeChip(
                         onPressed: updateMid,
                         isSelected: appState.autoMid[i],
                       ),
-                      HybridEnumChip(
-                        onPressed: updateLow,
-                        selection: appState.autoLow[i],
-                      )
-                    ]
-                  : [
-                      CubeToggleChip(
-                        onPressed: updateHigh,
-                        isSelected: appState.autoHigh[i],
-                      ),
-                      CubeToggleChip(
-                        onPressed: updateMid,
-                        isSelected: appState.autoMid[i],
-                      ),
-                      HybridEnumChip(
-                        onPressed: updateLow,
-                        selection: appState.autoLow[i],
-                      )
-                    ],
+                HybridChip(
+                  onPressed: updateLow,
+                  selection: appState.autoLow[i],
+                )
+              ],
             );
           }).toList(),
         ),

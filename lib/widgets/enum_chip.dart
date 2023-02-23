@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 
-class EnumChip extends StatelessWidget {
+class BaseEnumChip extends StatelessWidget {
   final Function onPressed;
   final String text;
   final Enum selection;
@@ -11,7 +11,7 @@ class EnumChip extends StatelessWidget {
   final IconData active;
   final IconData inactive;
 
-  const EnumChip({
+  const BaseEnumChip({
     super.key,
     required this.onPressed,
     required this.text,
@@ -44,14 +44,14 @@ class EnumChip extends StatelessWidget {
   }
 }
 
-class CircleEnumChip extends StatelessWidget {
+class EnumChip extends StatelessWidget {
   final Function onPressed;
   final String text;
   final Enum selection;
   final Enum? none;
   final Enum value;
 
-  const CircleEnumChip({
+  const EnumChip({
     super.key,
     required this.onPressed,
     required this.text,
@@ -62,7 +62,7 @@ class CircleEnumChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EnumChip(
+    return BaseEnumChip(
       onPressed: onPressed,
       text: text,
       selection: selection,
@@ -74,11 +74,11 @@ class CircleEnumChip extends StatelessWidget {
   }
 }
 
-class HybridEnumChip extends StatelessWidget {
+class HybridChip extends StatelessWidget {
   final Function onPressed;
   final Enum selection;
 
-  const HybridEnumChip({
+  const HybridChip({
     super.key,
     required this.onPressed,
     required this.selection,
@@ -92,7 +92,7 @@ class HybridEnumChip extends StatelessWidget {
           border: Border.all(color: Colors.white)),
       child: Column(
         children: [
-          EnumChip(
+          BaseEnumChip(
             onPressed: onPressed,
             text: "",
             selection: selection,
@@ -101,7 +101,7 @@ class HybridEnumChip extends StatelessWidget {
             active: Icons.adobe,
             inactive: Icons.change_history,
           ),
-          EnumChip(
+          BaseEnumChip(
             onPressed: onPressed,
             text: "",
             selection: selection,

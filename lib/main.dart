@@ -62,6 +62,30 @@ class MyAppState extends ChangeNotifier {
 
   // Endgame Page Data
   Position endgamePosition = Position.none;
+
+  // Resets All Data
+  // The function is here to easily check that it includes all the variables
+  void reset() {
+    commentController.clear();
+    teamController.clear();
+    startingPosition = StartingPosition.none;
+
+    autoMobility = false;
+    autoPosition = Position.none;
+    autoHigh = List.filled(10, false);
+    autoMid = List.filled(10, false);
+    autoLow = List.filled(10, Piece.none);
+
+    defense = false;
+    groundIntake = false;
+    singleSubstationIntake = false;
+    doubleSubstationIntake = false;
+    teleopHigh = List.filled(10, false);
+    teleopMid = List.filled(10, false);
+    teleopLow = List.filled(10, Piece.none);
+
+    endgamePosition = Position.none;
+  }
 }
 
 class MyHomePage extends StatefulWidget {

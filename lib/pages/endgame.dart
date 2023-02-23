@@ -17,9 +17,7 @@ class _EndgamePageState extends State<EndgamePage> {
     var appState = context.watch<MyAppState>();
 
     void updatePosition(Position value) {
-      setState(() {
-        appState.endgamePosition = value;
-      });
+      setState(() => appState.endgamePosition = value);
     }
 
     return Center(
@@ -28,25 +26,25 @@ class _EndgamePageState extends State<EndgamePage> {
       children: <Widget>[
         const Text('Robot endgame position:'),
         const SizedBox(height: 8),
-        CircleEnumChip(
+        EnumChip(
           text: "None",
           onPressed: updatePosition,
           value: Position.none,
           selection: appState.endgamePosition,
         ),
-        CircleEnumChip(
+        EnumChip(
           text: "Parked",
           onPressed: updatePosition,
           value: Position.parked,
           selection: appState.endgamePosition,
         ),
-        CircleEnumChip(
+        EnumChip(
           text: "Docked",
           onPressed: updatePosition,
           value: Position.docked,
           selection: appState.endgamePosition,
         ),
-        CircleEnumChip(
+        EnumChip(
           text: "Engaged",
           onPressed: updatePosition,
           value: Position.engaged,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ToggleChip extends StatelessWidget {
+class BaseToggleChip extends StatelessWidget {
   final Function onPressed;
   final String text;
   final bool isSelected;
   final IconData active;
   final IconData inactive;
 
-  const ToggleChip({
+  const BaseToggleChip({
     super.key,
     required this.onPressed,
     required this.isSelected,
@@ -34,12 +34,12 @@ class ToggleChip extends StatelessWidget {
   }
 }
 
-class CircleToggleChip extends StatelessWidget {
+class ToggleChip extends StatelessWidget {
   final Function onPressed;
   final String text;
   final bool isSelected;
 
-  const CircleToggleChip({
+  const ToggleChip({
     super.key,
     required this.onPressed,
     required this.isSelected,
@@ -48,7 +48,7 @@ class CircleToggleChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ToggleChip(
+    return BaseToggleChip(
       onPressed: onPressed,
       isSelected: isSelected,
       text: text,
@@ -58,11 +58,11 @@ class CircleToggleChip extends StatelessWidget {
   }
 }
 
-class ConeToggleChip extends StatelessWidget {
+class ConeChip extends StatelessWidget {
   final Function onPressed;
   final bool isSelected;
 
-  const ConeToggleChip({
+  const ConeChip({
     super.key,
     required this.onPressed,
     required this.isSelected,
@@ -70,7 +70,7 @@ class ConeToggleChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ToggleChip(
+    return BaseToggleChip(
       onPressed: onPressed,
       isSelected: isSelected,
       text: "",
@@ -80,11 +80,11 @@ class ConeToggleChip extends StatelessWidget {
   }
 }
 
-class CubeToggleChip extends StatelessWidget {
+class CubeChip extends StatelessWidget {
   final Function onPressed;
   final bool isSelected;
 
-  const CubeToggleChip({
+  const CubeChip({
     super.key,
     required this.onPressed,
     required this.isSelected,
@@ -92,7 +92,7 @@ class CubeToggleChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ToggleChip(
+    return BaseToggleChip(
       onPressed: onPressed,
       isSelected: isSelected,
       text: "",
