@@ -65,9 +65,8 @@ class MyAppState extends ChangeNotifier {
     Gsheets.addRow([
       nameController.text,
       teamController.text,
-      commentController.text,
-      startingPosition.toString(),
-      autoMobility.toString(),
+      startingPosition.name,
+      autoMobility ? 1 : 0,
       autoPosition.toString(),
       autoHigh.toString(),
       autoMid.toString(),
@@ -80,6 +79,7 @@ class MyAppState extends ChangeNotifier {
       teleopMid.toString(),
       teleopLow.toString(),
       endgamePosition.toString(),
+      commentController.text,
     ]);
   }
 }
