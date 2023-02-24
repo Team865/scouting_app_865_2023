@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../state.dart';
 import '../widgets/enum_chip.dart';
 
 class GeneratorPage extends StatefulWidget {
@@ -96,8 +97,8 @@ class GeneratorPageState extends State<GeneratorPage> {
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: ElevatedButton(
-              onPressed: () {},
-              child: const Text("Save"),
+              onPressed: () => appState.saveToSheets(),
+              child: const Text("Send to Sheets"),
             ), //adds a button to save the data, currently not functional
           ),
           Padding(
