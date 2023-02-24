@@ -26,6 +26,12 @@ class GeneratorPageState extends State<GeneratorPage> {
         //centres the column in the GeneratorPage widget
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const Text('Name'),
+          SizedBox(
+            width: 300,
+            child: TextFormField(controller: appState.nameController),
+          ),
+          const SizedBox(height: 30),
           const Text('Comments'),
           SizedBox(
             width: 300,
