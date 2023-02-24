@@ -42,6 +42,7 @@ class MyAppState extends ChangeNotifier {
   // Generator Page Data
   final commentController = TextEditingController();
   final teamController = TextEditingController();
+  final nameController = TextEditingController();
   StartingPosition startingPosition = StartingPosition.none;
 
   // Auto Page Data
@@ -68,6 +69,7 @@ class MyAppState extends ChangeNotifier {
   void reset() {
     commentController.clear();
     teamController.clear();
+    nameController.clear();
     startingPosition = StartingPosition.none;
 
     autoMobility = false;
