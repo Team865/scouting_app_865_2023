@@ -52,8 +52,8 @@ class ToggleChip extends StatelessWidget {
       onPressed: onPressed,
       isSelected: isSelected,
       text: text,
-      active: Icons.circle,
-      inactive: Icons.circle_outlined,
+      active: Icons.check_box_outlined,
+      inactive: Icons.check_box_outline_blank,
     );
   }
 }

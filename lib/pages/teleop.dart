@@ -50,7 +50,7 @@ class _TeleopPageState extends State<TeleopPage> {
             ),
           ]),
           const SizedBox(height: 8),
-          const ScoringLegend(),
+          // const ScoringLegend(),
           const Text("Teleop Pieces Scored:"),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

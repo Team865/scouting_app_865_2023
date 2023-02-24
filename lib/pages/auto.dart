@@ -58,7 +58,7 @@ class _AutoPageState extends State<AutoPage> {
           ],
         ),
         const SizedBox(height: 8),
-        const ScoringLegend(),
+        // const ScoringLegend(),
         const Text("Auto Pieces Scored:"),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
