@@ -68,8 +68,8 @@ class EnumChip extends StatelessWidget {
       selection: selection,
       value: value,
       none: none,
-      active: Icons.circle,
-      inactive: Icons.circle_outlined,
+      active: Icons.radio_button_on_outlined,
+      inactive: Icons.radio_button_off_outlined,
     );
   }
 }

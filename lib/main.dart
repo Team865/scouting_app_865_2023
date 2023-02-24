@@ -71,11 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Builder(builder: (context) {
       return LayoutBuilder(builder: (context, constraints) {
-        return Scaffold(
-          body: Row(
-            children: [
-              SafeArea(
-                child: NavigationRail(
+        return SafeArea(
+          child: Scaffold(
+            body: Row(
+              children: [
+                NavigationRail(
                   //creates a navigation rail to switch between pages
                   destinations: const [
                     NavigationRailDestination(
@@ -93,15 +93,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (value) =>
                       setState(() => selectedIndex = value),
+                  groupAlignment: 0,
                 ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
+                Expanded(
+                  child: Container(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: page,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       });
