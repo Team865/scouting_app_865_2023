@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
+import '../state.dart';
 
 class BaseEnumChip extends StatelessWidget {
   final Function onPressed;
