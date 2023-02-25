@@ -1,7 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:scouting_app_865_2023/utils/gsheets.dart';
+
+
+
 
 enum Piece { none, cone, cube }
 
@@ -36,6 +37,7 @@ class MyAppState extends ChangeNotifier {
   // Endgame Page Data
   Position endgamePosition = Position.none;
 
+
   // Resets All Data
   // The function is here to easily check that it includes all the variables
   void reset() {
@@ -60,26 +62,43 @@ class MyAppState extends ChangeNotifier {
 
     endgamePosition = Position.none;
   }
+  
 
   void saveToSheets() {
     Gsheets.addRow([
       nameController.text,
       teamController.text,
+      null,
+      null,
       startingPosition.name,
       autoMobility ? 1 : 0,
-      autoPosition.toString(),
-      autoHigh.toString(),
-      autoMid.toString(),
-      autoLow.toString(),
-      defense.toString(),
-      groundIntake.toString(),
-      singleSubstationIntake.toString(),
-      doubleSubstationIntake.toString(),
-      teleopHigh.toString(),
-      teleopMid.toString(),
-      teleopLow.toString(),
-      endgamePosition.toString(),
+      autoLow.where((element) => element == Piece.cone).length,
+      autoLow.where((element) => element == Piece.cube).length,
+      autoMid.where((element) => element == Piece.cone).length,
+      autoMid.where((element) => element == Piece.cube).length,
+      autoHigh.where((element) => element == Piece.cone).length,
+      autoHigh.where((element) => element == Piece.cube).length,
+      if (autoPosition == Position.docked) 1, 
+      if (autoPosition == Position.engaged) 1,
+      teleopLow.where((element) => element == Piece.cone).length,
+      teleopLow.where((element) => element == Piece.cube).length,
+      teleopMid.where((element) => element == Piece.cone).length,
+      teleopMid.where((element) => element == Piece.cube).length,
+      teleopHigh.where((element) => element == Piece.cone).length,
+      teleopHigh.where((element) => element == Piece.cube).length,
+      defense ? 1 : 0,
+      groundIntake ? 1 : 0,
+      singleSubstationIntake ? 1 : 0,
+      doubleSubstationIntake ? 1 : 0,
+      if (endgamePosition == Position.none) 1,
+      if (endgamePosition == Position.docked) 1,
+      if (endgamePosition == Position.parked) 1,
+      if (endgamePosition == Position.engaged) 1,
       commentController.text,
+      
+      
+
+      
     ]);
   }
 }

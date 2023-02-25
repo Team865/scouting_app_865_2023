@@ -83,6 +83,7 @@ class _AutoPageState extends State<AutoPage> {
                     ? ConeChip(
                         onPressed: updateHigh,
                         isSelected: appState.autoHigh[i],
+
                       )
                     : CubeChip(
                         onPressed: updateHigh,
