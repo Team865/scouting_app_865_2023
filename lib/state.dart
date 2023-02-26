@@ -78,8 +78,8 @@ class MyAppState extends ChangeNotifier {
       autoMid.where((element) => element == Piece.cube).length,
       autoHigh.where((element) => element == Piece.cone).length,
       autoHigh.where((element) => element == Piece.cube).length,
-      if (autoPosition == Position.docked) 1, 
-      if (autoPosition == Position.engaged) 1,
+      autoPosition == Position.docked ? 1 : 0,
+      autoPosition == Position.engaged ? 1 : 0,
       teleopLow.where((element) => element == Piece.cone).length,
       teleopLow.where((element) => element == Piece.cube).length,
       teleopMid.where((element) => element == Piece.cone).length,
@@ -90,12 +90,12 @@ class MyAppState extends ChangeNotifier {
       groundIntake ? 1 : 0,
       singleSubstationIntake ? 1 : 0,
       doubleSubstationIntake ? 1 : 0,
-      if (endgamePosition == Position.none) 1,
-      if (endgamePosition == Position.docked) 1,
-      if (endgamePosition == Position.parked) 1,
-      if (endgamePosition == Position.engaged) 1,
+      endgamePosition == Position.none ? 1 : 0,
+      endgamePosition == Position.parked ? 1 : 0,
+      endgamePosition == Position.docked ? 1 : 0,
+      endgamePosition == Position.engaged ? 1 : 0,
       commentController.text,
-      
+
       
 
       
