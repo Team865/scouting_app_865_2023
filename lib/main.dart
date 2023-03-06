@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
+import 'package:scouting_app_865_2023/pages/info.dart';
 import 'package:scouting_app_865_2023/state.dart';
 import 'package:scouting_app_865_2023/utils/gsheets.dart';
 
@@ -65,6 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 3:
         page = const EndgamePage();
         break;
+      case 4:
+        page = const InfoPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex'); //error case
     }
@@ -89,6 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     NavigationRailDestination(
                         icon: Icon(Icons.battery_charging_full),
                         label: Text('Endgame')),
+                    NavigationRailDestination(
+                        icon: Icon(Icons.info_outline),
+                        label: Text('Info')),
                   ],
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (value) =>
@@ -102,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: page,
+                          child: Center(child: page),
                         ),
                       ],
                     ),
