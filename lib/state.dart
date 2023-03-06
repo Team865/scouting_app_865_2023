@@ -16,6 +16,7 @@ class MyAppState extends ChangeNotifier {
   final commentController = TextEditingController();
   final teamController = TextEditingController();
   final nameController = TextEditingController();
+  final matchNumberController = TextEditingController();
   StartingPosition startingPosition = StartingPosition.none;
 
   // Auto Page Data
@@ -43,8 +44,10 @@ class MyAppState extends ChangeNotifier {
   void reset() {
     commentController.clear();
     teamController.clear();
-    nameController.clear();
+    // nameController.clear(); Don't reset name each match
     startingPosition = StartingPosition.none;
+    matchNumberController.clear();
+
 
     autoMobility = false;
     autoPosition = Position.none;
@@ -68,24 +71,23 @@ class MyAppState extends ChangeNotifier {
     Gsheets.addRow([
       nameController.text,
       teamController.text,
-      null,
-      null,
+      matchNumberController.text,
       startingPosition.name,
       autoMobility ? 1 : 0,
       autoLow.where((element) => element == Piece.cone).length,
       autoLow.where((element) => element == Piece.cube).length,
-      autoMid.where((element) => element == Piece.cone).length,
-      autoMid.where((element) => element == Piece.cube).length,
-      autoHigh.where((element) => element == Piece.cone).length,
-      autoHigh.where((element) => element == Piece.cube).length,
+      cones(autoMid),
+      cubes(autoMid),
+      cones(autoHigh),
+      cubes(autoHigh),
       autoPosition == Position.docked ? 1 : 0,
       autoPosition == Position.engaged ? 1 : 0,
       teleopLow.where((element) => element == Piece.cone).length,
       teleopLow.where((element) => element == Piece.cube).length,
-      teleopMid.where((element) => element == Piece.cone).length,
-      teleopMid.where((element) => element == Piece.cube).length,
-      teleopHigh.where((element) => element == Piece.cone).length,
-      teleopHigh.where((element) => element == Piece.cube).length,
+      cones(teleopMid),
+      cubes(teleopMid),
+      cones(teleopHigh),
+      cubes(teleopHigh),
       defense ? 1 : 0,
       groundIntake ? 1 : 0,
       singleSubstationIntake ? 1 : 0,
@@ -95,10 +97,26 @@ class MyAppState extends ChangeNotifier {
       endgamePosition == Position.docked ? 1 : 0,
       endgamePosition == Position.engaged ? 1 : 0,
       commentController.text,
-
-      
-
-      
     ]);
   }
+}
+
+int cones(List<bool> row) {
+  int count = 0;
+  for (int i = 0; i < row.length; i++) {
+    if (i % 3 != 1) {
+      count++;
+    }
+  }
+  return count;
+}
+
+int cubes(List<bool> row) {
+  int count = 0;
+  for (int i = 0; i < row.length; i++) {
+    if (i % 3 == 1) {
+      count++;
+    }
+  }
+  return count;
 }
