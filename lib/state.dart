@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_865_2023/utils/gsheets.dart';
 
-
-
-
 enum Piece { none, cone, cube }
 
 // parked only used for endgame's position
@@ -38,7 +35,6 @@ class MyAppState extends ChangeNotifier {
   // Endgame Page Data
   Position endgamePosition = Position.none;
 
-
   // Resets All Data
   // The function is here to easily check that it includes all the variables
   void reset() {
@@ -47,7 +43,6 @@ class MyAppState extends ChangeNotifier {
     // nameController.clear(); Don't reset name each match
     startingPosition = StartingPosition.none;
     matchNumberController.clear();
-
 
     autoMobility = false;
     autoPosition = Position.none;
@@ -65,7 +60,6 @@ class MyAppState extends ChangeNotifier {
 
     endgamePosition = Position.none;
   }
-  
 
   void saveToSheets() {
     Gsheets.addRow([
@@ -104,7 +98,7 @@ class MyAppState extends ChangeNotifier {
 int cones(List<bool> row) {
   int count = 0;
   for (int i = 0; i < row.length; i++) {
-    if (i % 3 != 1) {
+    if (i % 3 != 1 && row[i]) {
       count++;
     }
   }
@@ -114,7 +108,7 @@ int cones(List<bool> row) {
 int cubes(List<bool> row) {
   int count = 0;
   for (int i = 0; i < row.length; i++) {
-    if (i % 3 == 1) {
+    if (i % 3 == 1 && row[i]) {
       count++;
     }
   }
