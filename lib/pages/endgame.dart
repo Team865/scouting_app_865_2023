@@ -19,8 +19,7 @@ class _EndgamePageState extends State<EndgamePage> {
       setState(() => appState.endgamePosition = value);
     }
 
-    return Center(
-        child: Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         const Text('Robot endgame position:'),
@@ -50,6 +49,6 @@ class _EndgamePageState extends State<EndgamePage> {
           selection: appState.endgamePosition,
         ),
       ],
-    ));
+    );
   }
 }
