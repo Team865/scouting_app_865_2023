@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../state.dart';
 import '../widgets/enum_chip.dart';
+import 'package:qr/qr.dart';
 
 class GeneratorPage extends StatefulWidget {
   const GeneratorPage({super.key});
@@ -114,9 +115,48 @@ class GeneratorPageState extends State<GeneratorPage> {
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: ElevatedButton(
-            onPressed: () => appState.saveToSheets(),
-            child: const Text("Send to Sheets"),
-          ), //adds a button to save the data, currently not functional
+            onPressed: () async {
+              if(await appState.saveToSheets()) {
+                setState(() {
+
+                //tell the user that the data has been saved and center the text
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    //make the border circular
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    //make the backround color of the snackbar green
+                    backgroundColor: Colors.green,
+                    content: Text("Data Saved", textAlign: TextAlign.center),
+                  ),
+                );
+
+              });
+              }
+              else{
+                setState(() {
+
+                //tell the user that the data has been saved and center the text
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    //make the border circular
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    //make the backround color of the snackbar green
+                    backgroundColor: Colors.red,
+                    content: Text("Data Not Saved", textAlign: TextAlign.center),
+                  ),
+                );
+
+              });
+
+              }
+            },
+            child: const Text("Save"),
+          ), 
+          //adds a button to save the data, currently not functional
         ),
         Padding(
           padding: const EdgeInsets.all(5.0),
@@ -125,6 +165,12 @@ class GeneratorPageState extends State<GeneratorPage> {
             child: const Text("Reset"),
           ),
         ),
+        //Padding(padding: const EdgeInsets.all(5.0),
+          //child: ElevatedButton(
+            //onPressed: () => Navigator.pushNamed(context, '/qr_code'),
+            //child: const Text("Show QR Code"),
+          //),
+        //)
       ],
     );
   }
