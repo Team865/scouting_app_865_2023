@@ -29,11 +29,15 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  csv: ^5.0.1
   flutter:
     sdk: flutter
   
+  flutter_local_notifications: ^13.0.0
   gsheets: ^0.4.2
   provider: ^6.0.0
+  qr_flutter: ^4.0.0
+  shared_preferences: ^2.0.18
 
 dev_dependencies:
   flutter_test:
