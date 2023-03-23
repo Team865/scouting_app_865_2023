@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../state.dart';
 import '../widgets/enum_chip.dart';
@@ -165,12 +166,6 @@ class GeneratorPageState extends State<GeneratorPage> {
             child: const Text("Reset"),
           ),
         ),
-        //Padding(padding: const EdgeInsets.all(5.0),
-          //child: ElevatedButton(
-            //onPressed: () => Navigator.pushNamed(context, '/qr_code'),
-            //child: const Text("Show QR Code"),
-          //),
-        //)
       ],
     );
   }

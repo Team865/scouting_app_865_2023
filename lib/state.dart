@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:scouting_app_865_2023/utils/gsheets.dart';
   import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +12,8 @@ enum Position { none, docked, parked, engaged }
 enum StartingPosition { none, red1, red2, red3, blue1, blue2, blue3 }
 
 class MyAppState extends ChangeNotifier {
+  var cache;
+
   // Generator Page Data
   final commentController = TextEditingController();
   final teamController = TextEditingController();
@@ -94,7 +98,9 @@ class MyAppState extends ChangeNotifier {
       endgamePosition == Position.engaged ? 1 : 0,
       commentController.text,
     ];
-    return Gsheets.addRow(state);
+      cache = state;
+      return Gsheets.addRow(state);
+    
   }
 }
 
