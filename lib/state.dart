@@ -13,7 +13,6 @@ enum StartingPosition { none, red1, red2, red3, blue1, blue2, blue3 }
 
 class MyAppState extends ChangeNotifier {
   var cache;
-
   // Generator Page Data
   final commentController = TextEditingController();
   final teamController = TextEditingController();
@@ -100,7 +99,6 @@ class MyAppState extends ChangeNotifier {
     ];
       cache = state;
       return Gsheets.addRow(state);
-    
   }
 }
 
