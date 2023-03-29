@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:scouting_app_865_2023/utils/gsheets.dart';
-  import 'package:shared_preferences/shared_preferences.dart';
 
 enum Piece { none, cone, cube }
 
@@ -12,14 +9,12 @@ enum Position { none, docked, parked, engaged }
 enum StartingPosition { none, red1, red2, red3, blue1, blue2, blue3 }
 
 class MyAppState extends ChangeNotifier {
-  var cache;
   // Generator Page Data
   final commentController = TextEditingController();
   final teamController = TextEditingController();
   final nameController = TextEditingController();
   final matchNumberController = TextEditingController();
   StartingPosition startingPosition = StartingPosition.none;
-
 
   // Auto Page Data
   bool autoMobility = false;
@@ -64,10 +59,10 @@ class MyAppState extends ChangeNotifier {
     teleopLow = List.filled(10, Piece.none);
 
     endgamePosition = Position.none;
-}
+  }
 
-  Future<bool> saveToSheets() {
-    var state = [
+  dynamic getData() {
+    return [
       nameController.text,
       teamController.text,
       matchNumberController.text,
@@ -97,8 +92,11 @@ class MyAppState extends ChangeNotifier {
       endgamePosition == Position.engaged ? 1 : 0,
       commentController.text,
     ];
-      cache = state;
-      return Gsheets.addRow(state);
+  }
+
+  Future<bool> saveToSheets() {
+    var state = getData();
+    return Gsheets.addRow(state);
   }
 }
 

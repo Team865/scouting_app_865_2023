@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../state.dart';
+import '../utils/state.dart';
 import '../widgets/enum_chip.dart';
 import '../widgets/toggle_chip.dart';
 
@@ -80,7 +80,6 @@ class _AutoPageState extends State<AutoPage> {
                     ? ConeChip(
                         onPressed: updateHigh,
                         isSelected: appState.autoHigh[i],
-
                       )
                     : CubeChip(
                         onPressed: updateHigh,

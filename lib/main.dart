@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
-import 'package:scouting_app_865_2023/pages/info.dart';
-import 'package:scouting_app_865_2023/state.dart';
-import 'package:scouting_app_865_2023/utils/gsheets.dart';
 
-import '../pages/endgame.dart';
-import '../pages/generator.dart';
-import '../pages/teleop.dart';
+import '../utils/state.dart';
+import '../utils/gsheets.dart';
+import '../pages/home.dart';
 import '../pages/auto.dart';
+import '../pages/teleop.dart';
+import '../pages/endgame.dart';
+import '../pages/info.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // assigns the relevant page for the selected index
     switch (selectedIndex) {
       case 0:
-        page = const GeneratorPage();
+        page = const HomePage();
         break;
       case 1:
         page = const AutoPage();
@@ -94,8 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         icon: Icon(Icons.battery_charging_full),
                         label: Text('Endgame')),
                     NavigationRailDestination(
-                        icon: Icon(Icons.info_outline),
-                        label: Text('Info')),
+                        icon: Icon(Icons.info_outline), label: Text('Info')),
                   ],
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (value) =>

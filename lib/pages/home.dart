@@ -1,25 +1,26 @@
+import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-import '../state.dart';
+import '../utils/state.dart';
 import '../widgets/enum_chip.dart';
-import 'package:qr/qr.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
-class GeneratorPage extends StatefulWidget {
-  const GeneratorPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<GeneratorPage> createState() => GeneratorPageState();
+  State<HomePage> createState() => HomePageState();
 }
 
-class GeneratorPageState extends State<GeneratorPage> {
+class HomePageState extends State<HomePage> {
+  bool isConfirmed = false;
+
   @override
   Widget build(BuildContext context) {
     //allows the home page widget to use variables from the app state
     var appState = context.watch<MyAppState>();
-
-    bool _isConfiemed = false;
 
     void updatePosition(StartingPosition value) {
       setState(() => appState.startingPosition = value);
@@ -120,9 +121,10 @@ class GeneratorPageState extends State<GeneratorPage> {
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: ElevatedButton(
+            child: const Text("Send Data"),
+            // create a button that confims the user if they want to send the data to the google sheets
             onPressed: () {
-              // create a button that confims the user if they want to send the data to the google sheets
-              if (_isConfiemed == false) {
+              if (!isConfirmed) {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
@@ -139,30 +141,30 @@ class GeneratorPageState extends State<GeneratorPage> {
                           onPressed: () {
                             Navigator.pop(context, 'OK');
                             setState(() {
-                              _isConfiemed = true;
+                              isConfirmed = true;
                             });
-                            if(_isConfiemed){                            
-                              if ((appState.nameController.text == "" ||
-                                    appState.teamController.text == "" ||
-                                    appState.matchNumberController.text == "" ||
-                                    appState.startingPosition ==
-                                        StartingPosition.none)) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Please fill out all fields'),
-                                ),
-                              );
-                            } else {
-                              appState.saveToSheets();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Data Sent'),
-                                ),
-                              );
-                              appState.reset();
-                              _isConfiemed = false;
+                            if (isConfirmed) {
+                              if (appState.nameController.text == "" ||
+                                  appState.teamController.text == "" ||
+                                  appState.matchNumberController.text == "" ||
+                                  appState.startingPosition ==
+                                      StartingPosition.none) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Please fill out all fields'),
+                                  ),
+                                );
+                              } else {
+                                appState.saveToSheets();
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Data Sent'),
+                                  ),
+                                );
+                                appState.reset();
+                                isConfirmed = false;
+                              }
                             }
-                          }
                           },
                           child: const Text('OK'),
                         ),
@@ -172,9 +174,31 @@ class GeneratorPageState extends State<GeneratorPage> {
                 );
               }
             },
-            child: const Text("Send Data"),
           ),
         ),
+        // ↓ uncomment if you don't want the QR button to show on website
+        // if (!kIsWeb)
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: ElevatedButton(
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('QR Code'),
+                  content: SizedBox(
+                    width: 200,
+                    child: QrImage(
+                      data: const ListToCsvConverter()
+                          .convert([appState.getData()]),
+                    ),
+                  ),
+                );
+              },
+            ),
+            child: const Text("QR"),
+          ),
+        )
       ],
     );
   }
