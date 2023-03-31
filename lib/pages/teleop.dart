@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../state.dart';
+import '../utils/state.dart';
 import '../widgets/enum_chip.dart';
 import '../widgets/toggle_chip.dart';
 
@@ -30,8 +30,7 @@ class _TeleopPageState extends State<TeleopPage> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           ToggleChip(
             text: "Ground",
-            onPressed: (value) =>
-                setState(() => appState.groundIntake = value),
+            onPressed: (value) => setState(() => appState.groundIntake = value),
             isSelected: appState.groundIntake,
           ),
           ToggleChip(
