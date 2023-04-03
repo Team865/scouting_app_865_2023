@@ -1,5 +1,6 @@
 {
     "java.project.sourcePaths": [
         "scouting_app_865_2023/android/app/src/main/res"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

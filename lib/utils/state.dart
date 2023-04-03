@@ -13,6 +13,7 @@ class MyAppState extends ChangeNotifier {
   final commentController = TextEditingController();
   final teamController = TextEditingController();
   final nameController = TextEditingController();
+  final qrCodeController = TextEditingController();
   final matchNumberController = TextEditingController();
   StartingPosition startingPosition = StartingPosition.none;
 
@@ -34,6 +35,7 @@ class MyAppState extends ChangeNotifier {
 
   // Endgame Page Data
   Position endgamePosition = Position.none;
+
 
   // Resets All Data
   // The function is here to easily check that it includes all the variables
