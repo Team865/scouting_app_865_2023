@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; //imports flutter -- most important line of code
 import 'package:provider/provider.dart';
+import 'package:scouting_app_865_2023/pages/scanner.dart';
 
 import '../utils/state.dart';
 import '../utils/gsheets.dart';
@@ -69,6 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 4:
         page = const InfoPage();
         break;
+      case 5:
+        page = const QRScanner();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex'); //error case
     }
@@ -95,6 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Text('Endgame')),
                     NavigationRailDestination(
                         icon: Icon(Icons.info_outline), label: Text('Info')),
+                    NavigationRailDestination(
+                        icon: Icon(Icons.qr_code_scanner), label: Text('QR')),
                   ],
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (value) =>

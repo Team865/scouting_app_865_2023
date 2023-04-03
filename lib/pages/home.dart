@@ -198,7 +198,10 @@ class HomePageState extends State<HomePage> {
             ),
             child: const Text("QR"),
           ),
-        )
+        ),
+          
+
+        
       ],
     );
   }
