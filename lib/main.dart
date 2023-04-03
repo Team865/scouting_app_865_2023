@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const InfoPage();
         break;
       case 5:
-        page = const QRScanner();
+        page = QrScannerPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex'); //error case

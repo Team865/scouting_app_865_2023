@@ -1,7 +1,6 @@
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../utils/state.dart';
 import '../widgets/enum_chip.dart';
@@ -176,32 +175,36 @@ class HomePageState extends State<HomePage> {
             },
           ),
         ),
-        // ↓ uncomment if you don't want the QR button to show on website
-        // if (!kIsWeb)
         Padding(
           padding: const EdgeInsets.all(5),
           child: ElevatedButton(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('QR Code'),
-                  content: SizedBox(
-                    width: 200,
-                    child: QrImage(
-                      data: const ListToCsvConverter()
-                          .convert([appState.getData()]),
+            onPressed: () => {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('QR Code'),
+                    actions: [
+                      TextButton(
+                        child: const Text("Reset Data"),
+                        onPressed: () => appState.reset(),
+                      )
+                    ],
+                    content: SizedBox(
+                      width: 200,
+              
+                      child: QrImage(
+                        data: const ListToCsvConverter()
+                            .convert([appState.getData()]),
+                      )
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              )
+            },
             child: const Text("QR"),
           ),
         ),
-          
-
-        
       ],
     );
   }
